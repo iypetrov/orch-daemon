@@ -1,9 +1,12 @@
+import logging
 import argparse
 
+log = logging.getLogger('orch-daemon')
+log.setLevel(logging.INFO)
+logging.basicConfig(format='%(asctime)s - %(name)s - %(message)s', datefmt='%d-%b-%y %H:%M:%S')
 
 def run_controller():
-    print("start controller")
-
+    log.info("start controller")
 
 def main():
     parser = argparse.ArgumentParser()
@@ -13,7 +16,6 @@ def main():
 
     if args.mode == "controller":
         run_controller()
-
 
 if __name__ == "__main__":
     main()
