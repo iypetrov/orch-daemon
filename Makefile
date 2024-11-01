@@ -1,2 +1,2 @@
-run-controller:
-	python main.py controller
+run:
+	python main.py orch 

@@ -5,17 +5,17 @@ log = logging.getLogger('orch-daemon')
 log.setLevel(logging.INFO)
 logging.basicConfig(format='%(asctime)s - %(name)s - %(message)s', datefmt='%d-%b-%y %H:%M:%S')
 
-def run_controller():
-    log.info("start controller")
+def run_orch():
+    log.info("start orch")
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("mode", choices=["controller"])
+    parser.add_argument("mode", choices=["orch"])
 
     args = parser.parse_args()
 
-    if args.mode == "controller":
-        run_controller()
+    if args.mode == "orch":
+        run_orch()
 
 if __name__ == "__main__":
     main()
