@@ -2,6 +2,7 @@ import logging
 import argparse
 import time
 import datetime as dt
+import docker
 
 from concurrent.futures import ThreadPoolExecutor
 from scheduler import Scheduler
@@ -30,9 +31,17 @@ def schedule_actions():
 
 def listen_events():
     try:
-        while True:
-            log.info("start listen events")
-            time.sleep(5)
+        docker_client = docker.from_env()
+        container = docker_client.containers.run(
+            image="bfirsh/reticulate-splines",
+            labels=dict(key1='value1', key2='value2'),
+            detach=True,
+        )
+        log.info("container id: %s", container.id)
+        log.info("container image: %s", container.image)
+        log.info("container status: %s", container.status)
+        log.info("container labels: %s", container.labels)
+        log.info("container logs: %s", container.logs())
     except Exception as e:
         log.error("An error occurred in listen_events: %s", e, exc_info=True)
 
